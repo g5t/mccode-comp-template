@@ -11,4 +11,4 @@ to produce the registry file for your use case.
 
 ## Workflow permissions
 You may need to modify the permissions granted to workflow files in your cloned repository.
-Under `Workflow permissions` at [settings/actions](settings/actions) ensure that `Read and write permissions` is selected.
+Under `Workflow permissions` at [settings/actions](../../settings/actions) ensure that `Read and write permissions` is selected.
