@@ -8,3 +8,7 @@ You may need to modify either the Python script which produces the file,
 located at `.github/register.py`,
 or the workflow, `.github/workflows/register.yml`,
 to produce the registry file for your use case.
+
+## Workflow permissions
+You may need to modify the permissions granted to workflow files in your cloned repository.
+Under `Workflow permissions` at [settings/actions](settings/actions) ensure that `Read and write permissions` is selected.
