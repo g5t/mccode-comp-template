@@ -50,7 +50,7 @@ def main():
     if args.ext:
         hashes = {}
         for ext in args.ext:
-            hashes.update(make_registry(root, dirs, recursive=args.recursive, ext=ext))
+            hashes.update(make_registry(root, dirs, recursive=args.recursive, ext=' '.join(ext)))
     else:
         hashes = make_registry(root, dirs, recursive=args.recursive)
 
