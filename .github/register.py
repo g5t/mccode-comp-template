@@ -41,14 +41,19 @@ def main():
     parser.add_argument('-d', '--dirs', type=str, default='', help='comma separated list of directories relative to root to include')
     parser.add_argument('-r', '--recursive', action='store_true', help='recurse through list of directories')
     parser.add_argument('--no-recursive', action='store_false', dest='recursive', help='disable recursion')
-    parser.add_argument('--ext', type=str, default='', help='limit search to only this extension')
+    parser.add_argument('--ext', type=str, nargs='*', action='append', default=None, help='limit search to only this extension')
     parser.add_argument('-o', '--output', type=str, default='pooch-registry.txt', help='registry file name')
     args = parser.parse_args()
 
     root = Path(args.root) if isinstance(args.root, str) else args.root
     dirs = [''] if args.dirs == '' else args.dirs.split(',')
-    ext = None if args.ext == '' else args.ext
-    hashes = make_registry(root, dirs, recursive=args.recursive, ext=ext)
+    if args.ext:
+        hashes = {}
+        for ext in args.ext:
+            hashes.update(make_registry(root, dirs, recursive=args.recursive, ext=ext))
+    else:
+        hashes = make_registry(root, dirs, recursive=args.recursive)
+
     if len(hashes):
         write_registry(hashes, root.joinpath(args.output))
 
